@@ -215,3 +215,23 @@ class Login(View):
 def logout_user(request):
     logout(request)
     return redirect('/')
+
+
+
+
+from django.contrib.auth.decorators import login_required
+from .models import Customer
+
+@login_required
+def my_profile(request):
+    try:
+        # Fetch the Customer object associated with the logged-in user
+        customer = Customer.objects.get(user=request.user)
+    except Customer.DoesNotExist:
+        customer = None  # Handle cases where the customer profile is missing
+
+    context = {
+        'user': request.user,
+        'customer': customer,
+    }
+    return render(request, 'my_profile.html', context)

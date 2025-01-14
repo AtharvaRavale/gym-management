@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>My Profile</h1>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">User Information</h4>
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>First Name:</strong> {{ user.first_name }}</p>
+            <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            
+            {% if customer %}
+                <!-- <h4 class="card-title mt-4">Customer Information</h4> -->
+                <p><strong>Date of Birth:</strong> {{ customer.dob }}</p>
+                <p><strong>Age:</strong> {{ customer.age }}</p>
+                <p><strong>Gender:</strong> {{ customer.get_gender_display }}</p>
+                <p><strong>Contact Details:</strong> {{ customer.contact_details }}</p>
+            {% else %}
+                <p>No customer profile found. Please update your profile.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

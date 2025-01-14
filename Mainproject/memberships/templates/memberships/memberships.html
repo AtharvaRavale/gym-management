@@ -1,5 +1,22 @@
 {% extends 'base.html' %}
-{% block body_class %}memberships-page{% endblock %}
+<!-- {% block body_class %}memberships-page{% endblock %} -->
+<!-- {% block messages %}
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}
+                <button style="font-size:20px; float: right;" onclick="remove(event)">&#10008;</button>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}
+
+<script>
+    function remove(event) {
+        event.target.parentElement.style.display = 'none';
+    }
+</script> -->
 
 
 {% block content %}
@@ -22,6 +39,8 @@
             {% for plan in membership_plans %}
                 <div class="col-lg-4 col-md-6">
                     <div class="membership-plan-card">
+                        <!-- <h3>{{ plan.membership_id }}</h3> -->
+
                         <h3>{{ plan.name }}</h3>
                         <p class="price">₹ {{ plan.price }} / yearly membership</p>
                         <!-- {% if plan.badge %}
@@ -32,7 +51,7 @@
                                 <span>{{ feature }}</span>
                             {% endfor %}
                         </div>
-                        <a href="{% url 'login' %}" class="btn btn-primary">Let's Get Fit</a>
+                        <a href="{% url 'purchase_membership' %}" class="btn btn-primary">Let's Get Fit</a>
                     </div>
                 </div>
             {% endfor %}

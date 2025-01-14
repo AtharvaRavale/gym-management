@@ -19,3 +19,5 @@ def home(request):
     return render(request, 'home/home.html')
         # 'current_year': current_year
     
+
+

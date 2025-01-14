@@ -49,13 +49,13 @@ from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
 
-class Rohit(models.Manager):
-    def address(self):
-        return self.all().only('user','title')
-    def full_address(self):
-        return self.all().defer('country')
+# class Rohit(models.Manager):
+#     def address(self):
+#         return self.all().only('user','title')
+#     def full_address(self):
+#         return self.all().defer('country')
 class Address(models.Model):
-    objects = Rohit()
+    # objects = Rohit()
     user = models.ForeignKey(User,on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=20)
     address_line1 = models.CharField(max_length=50)
