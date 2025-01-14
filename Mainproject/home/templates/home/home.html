@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block body_class %}home-page{% endblock %}
+
+
+{% block content %}
+    <!-- Main Content -->
+    <div class="container mt-5">
+        <h1 style="font-size: 30px;">Welcome to GymPro</h1>
+        <p style="font-size: 30px;">Your fitness journey starts here. Whether you're looking to build strength, lose weight, or improve flexibility, we're here to help you achieve your goals.</p>
+
+        <!-- Success Alert -->
+        <div class="alert success">
+            <strong style="font-size: 30px;">Success!</strong> You're on the way to a healthier you!
+        </div>
+
+        <!-- Featured Sections -->
+        <div class="row mt-4">
+            <!-- Memberships -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" style="font-size: 30px;">Memberships</h5>
+                        <p class="card-text" style="font-size: 30px;">Choose from a variety of membership plans that suit your fitness needs and budget.</p>
+                        <a href="{% url 'memberships' %}" class="btn btn-primary" style="font-size: 30px;">Explore Memberships</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trainers -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" style="font-size: 30px;">Trainers</h5>
+                        <p class="card-text" style="font-size: 30px;">Our expert trainers are here to guide you through personalized fitness routines.</p>
+                        <a href="{% url 'trainers' %}" class="btn btn-primary" style="font-size: 30px;">Meet the Trainers</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Workout Plans -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" style="font-size: 30px;">Workout Plans</h5>
+                        <p class="card-text" style="font-size: 30px;">Discover workout plans tailored to your fitness level and goals.</p>
+                        <a href="{% url 'workout_plans' %}" class="btn btn-primary" style="font-size: 30px;">Find Your Plan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

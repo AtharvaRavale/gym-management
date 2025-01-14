@@ -1,0 +1,713 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Gym Management System">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>
+        GymPro |
+        {% block title %} Home {% endblock %}
+    </title>
+
+    <style>
+        /* Default background (home page) */
+        body.home-page {
+            background-image: url("{% static 'img/homegym-bg.jpg' %}");
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: #fff;
+        }
+    
+        /* Background for memberships page */
+        body.memberships-page {
+            background-image: url("{% static 'img/pt-bg.jpg' %}");
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: #fff;
+        }
+    
+        /* Background for trainers page */
+        body.trainers-page {
+            background-image: url("{% static 'img/yoga-index-bg.jpg' %}");
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: #fff;
+        }
+    
+        /* Background for workout plans page */
+        body.workout-plans-page {
+            background-image: url("{% static 'img/group-index-bg-bg.jpg' %}");
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: #fff;
+        }
+    
+        .container {
+            position: relative;
+            z-index: 2;
+            padding-top: 100px;
+        }
+    
+        .classy-navbar {
+            display: inline-flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 30px;
+        }
+    
+        .classynav {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+    
+        .classynav li {
+            margin: 0 15px;
+        }
+    
+        .classynav li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px;
+            font-weight: bold;
+        }
+    
+        .classynav li a:hover {
+            color: #007bff;
+        }
+    
+        .footer_menu {
+            display: inline-flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 18px; /* Reduced font size for footer links */
+        }
+    
+        .footer_menu li a {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px;
+            font-weight: bold;
+        }
+    
+        .footer_menu li a:hover {
+            color: #ff5722; /* Highlight color for footer links */
+        }
+    
+        /* Welcome Area Styles */
+        .welcome_area {
+            padding: 100px 0;
+            text-align: center;
+            color: #fff;
+        }
+    
+        .welcome_area h6 {
+            font-size: 30px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+    
+        .welcome_area h2 {
+            font-size: 50px;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+    
+        .welcome_area .btn {
+            font-size: 20px;
+            padding: 15px 30px;
+            background-color: #ff5722;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease;
+        }
+    
+        .welcome_area .btn:hover {
+            background-color: #e64a19;
+        }
+    
+        /* Gym Services Area Styles */
+        .gym_services_area {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+    
+        .gym_services_area .single_service_area {
+            height: 300px;
+            margin-bottom: 30px;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+    
+        .gym_services_area .single_service_area .service-content {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            color: #d83e3e;
+            text-align: center;
+            z-index: 2;
+        }
+    
+        .gym_services_area .single_service_area h4 {
+            font-size: 30px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+    
+        .gym_services_area .single_service_area p {
+            font-size: 18px;
+            line-height: 1.4;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+    
+        .gym_services_area .single_service_area:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+    
+        /* Footer Styles */
+        #footer {
+            background-color: #444; /* Lighter shade */
+            color: #fff;
+            padding: 30px 0 10px; /* Reduced padding for smaller footer height */
+            font-family: Arial, sans-serif;
+        }
+    
+        /* Footer Logo and Navigation */
+        .footer_area .footer-logo img {
+            max-width: 130px; /* Reduced logo size */
+            height: auto;
+        }
+    
+        .footer_menu ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+    
+        .footer_menu ul li {
+            display: inline-block;
+            margin-right: 15px; /* Reduced spacing between menu items */
+        }
+    
+        .footer_menu ul li a {
+            font-size: 14px; /* Slightly smaller font for menu items */
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+    
+        .footer_menu ul li a:hover {
+            color: #ff5722;
+        }
+    
+        /* Footer Contact Info */
+        .single_widget_area h4 {
+            font-size: 18px; /* Slightly smaller heading */
+            color: #ff5722;
+            font-weight: 600;
+            margin-bottom: 10px; /* Reduced space between heading and text */
+        }
+    
+        .single_widget_area p {
+            font-size: 14px; /* Smaller font size for contact details */
+            margin-bottom: 8px; /* Reduced margin between contact items */
+            color: #ccc;
+        }
+    
+        .single_widget_area a {
+            color: #ff5722;
+            text-decoration: none;
+        }
+    
+        .single_widget_area a:hover {
+            color: #fff;
+        }
+    
+        /* Footer Bottom */
+        #footer .footer_bottom {
+            background-color: #333; /* Keep bottom area darker */
+            padding: 15px 0; /* Reduced padding */
+            font-size: 13px; /* Slightly smaller font size */
+            color: #888;
+        }
+    
+        #footer .footer_bottom p {
+            margin-bottom: 0;
+        }
+    
+        #footer .footer_bottom p a {
+            color: #ff5722;
+            text-decoration: none;
+        }
+    
+        #footer .footer_bottom p a:hover {
+            text-decoration: underline;
+        }
+    
+        /* Responsive Design */
+        @media (max-width: 767px) {
+            .footer_area .footer-menu ul {
+                text-align: center;
+                margin-top: 15px; /* Reduced margin for better mobile spacing */
+            }
+    
+            .footer_area .footer-menu ul li {
+                display: block;
+                margin-bottom: 8px; /* Reduced spacing between items */
+            }
+    
+            .footer_area .single_widget_area {
+                text-align: center;
+            }
+    
+            .footer_area .footer-logo {
+                margin-bottom: 15px; /* Reduced margin below logo */
+            }
+    
+            .gym_services_area .single_service_area h4 {
+                font-size: 23px;
+            }
+    
+            .gym_services_area .single_service_area p {
+                font-size: 16px; /* Adjusted font size for readability on small screens */
+            }
+    
+            .welcome_area h6 {
+                font-size: 28px;
+            }
+    
+            .welcome_area h2 {
+                font-size: 35px;
+            }
+    
+            .gym_services_area .single_service_area h4 {
+                font-size: 23px;
+            }
+    
+            .gym_services_area .single_service_area p {
+                font-size: 16px;
+            }
+        }
+
+    /* General Body Styles */
+    body.workout-plans-page {
+        background-image: url("{% static 'img/workout-bg.jpg' %}");
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed;
+        min-height: 100vh;
+        color: #fff; /* White text for contrast */
+    }
+
+    /* Container for content */
+    .container {
+        position: relative;
+        z-index: 2;
+        padding-top: 100px;
+        color: #fff; /* Ensures text is readable */
+    }
+
+    /* Title styles */
+    .workout-title {
+        font-size: 50px;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 20px;
+        letter-spacing: 1px;
+        color: #fff; /* White title */
+    }
+
+    /* Description styles */
+    .workout-description {
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 40px;
+        line-height: 1.6;
+        color: #ccc; /* Light grey for description text */
+    }
+
+    /* Card layout for each workout plan */
+    .card {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Darker shadow for contrast */
+        background-color: #2b2b2b; /* Dark background for the card */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* Deeper shadow on hover */
+    }
+
+    /* Card title */
+    .workout-plan-title {
+        font-size: 25px;
+        font-weight: bold;
+        color: #fff; /* White text for card title */
+        margin-bottom: 15px;
+        text-transform: uppercase;
+    }
+
+    /* Card text (description) */
+    .workout-plan-text {
+        font-size: 16px;
+        color: #ccc; /* Light grey text for better readability */
+        line-height: 1.6;
+    }
+
+    /* Button styling */
+    .workout-plan-btn {
+        background-color: #333; /* Dark button background */
+        color: #fff; /* White text for the button */
+        padding: 10px 20px;
+        font-size: 16px;
+        text-transform: uppercase;
+        border-radius: 30px;
+        text-decoration: none;
+        margin-top: 20px;
+        display: inline-block;
+        border: 2px solid #ff5722; /* Orange border for the button */
+        transition: background-color 0.3s ease, border 0.3s ease;
+    }
+
+    .workout-plan-btn:hover {
+        background-color: #ff5722; /* Orange background on hover */
+        border: 2px solid #fff; /* White border on hover */
+    }
+
+    /* Responsive Design */
+    @media (max-width: 767px) {
+        .workout-title {
+            font-size: 40px;
+        }
+
+        .workout-description {
+            font-size: 18px;
+        }
+
+        .workout-plan-title {
+            font-size: 22px;
+        }
+
+        .workout-plan-text {
+            font-size: 14px;
+        }
+
+        .workout-plan-btn {
+            font-size: 14px;
+            padding: 8px 16px;
+        }
+    }
+
+    /* Card layout for mobile */
+    @media (max-width: 991px) {
+        .col-md-4 {
+            width: 100%; /* Stacks the cards on medium screens and below */
+            margin-bottom: 30px;
+        }
+    }
+    /* General Page Styling */
+    body.workout-plans-page {
+        background-color: #1c1c1c; /* Dark background for the page */
+        color: #fff; /* Light text color for readability */
+        font-family: Arial, sans-serif;
+    }
+
+    .container {
+        padding-top: 80px; /* Space from the top of the page */
+        padding-bottom: 40px; /* Space at the bottom of the page */
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 50px;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 40px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    /* Styling for the individual workout plans */
+    .card {
+        background-color: #2c2c2c; /* Dark grey background for the card */
+        border: 1px solid #444; /* Subtle border for separation */
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add shadow for a raised effect */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: scale(1.05); /* Slightly increase the size of the card on hover */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Deepen the shadow on hover */
+    }
+
+    /* Card Body Styling */
+    .card-body {
+        padding: 25px;
+    }
+
+    .card-title {
+        font-size: 24px;
+        font-weight: 600;
+        color: #fff; /* White text for the title */
+        margin-bottom: 15px;
+    }
+
+    .card-text {
+        font-size: 16px;
+        color: #ccc; /* Light grey text for the description */
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    .btn-primary {
+        background-color: #ff5722; /* Orange button background */
+        color: #fff;
+        padding: 12px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 25px;
+        border: none;
+        text-decoration: none;
+        display: inline-block;
+        transition: background-color 0.3s ease, border 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #e64a19; /* Darker orange on hover */
+    }
+
+    /* Responsive Design */
+    @media (max-width: 767px) {
+        h1 {
+            font-size: 36px; /* Smaller title on smaller screens */
+        }
+
+        .card-title {
+            font-size: 20px; /* Smaller title on mobile */
+        }
+
+        .card-text {
+            font-size: 14px; /* Smaller text for card descriptions */
+        }
+
+        .btn-primary {
+            font-size: 14px; /* Smaller buttons on mobile */
+            padding: 10px 18px;
+        }
+
+        .container {
+            padding-top: 60px; /* Less padding on smaller screens */
+        }
+    }
+
+
+    
+
+
+        
+    </style>
+    
+
+    <!-- Core Style CSS -->
+    <link rel="stylesheet" href="{% static 'css/core-style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'img/favicon.ico' %}">
+</head>
+
+<body class="{% block body_class %}home-page{% endblock %}"> <!-- Dynamic body class based on the page -->
+    <!-- ##### Header Area Start ##### -->
+    <header class="header_area">
+        <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
+            <!-- Logo -->
+            <a class="nav-brand" href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}" alt="GymPro Logo"></a>
+
+            <!-- Navbar -->
+            <div class="classy-navbar" id="gymNav">
+                <div class="classy-navbar-toggler">
+                    <span class="navbarToggler"><span></span><span></span><span></span></span>
+                </div>
+                <!-- Menu -->
+                <div class="classy-menu">
+                    <div class="classynav">
+                        <ul>
+                            <li><a href="{% url 'home' %}">Home</a></li>
+                            <li><a href="{% url 'memberships' %}">Memberships</a></li>
+                            <li><a href="{% url 'trainers' %}">Trainers</a></li>
+                            <li><a href="{% url 'workout_plans' %}">Workout Plans</a></li>
+                            <li><a href="#footer">Contact</a></li> <!-- Link to scroll to contact section in footer -->
+
+                            {% if request.user.is_authenticated %}
+                            <li><a href="{% url 'home' %}">My Profile</a></li>
+                            <li><a href="{% url 'logout' %}">Logout</a></li>
+                            {% else %}
+                            <li><a href="{% url 'login' %}">Login</a></li>
+                            <li><a href="{% url 'register' %}">Register</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+
+                    {% block messages %}
+                    {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}
+                                    <button style="font-size:20px; float: right;" onclick="remove(event)">&#10008;</button>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    {% endblock %}
+
+                    <script>
+                        function remove(event) {
+                            event.target.parentElement.style.display = 'none';
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    {% block content %}
+    <!-- Main Content Area -->
+    <div class="container">
+        <h1>Welcome to GymPro</h1>
+        <p>Your fitness journey starts here. Whether you're looking to build strength, lose weight, or improve flexibility, we're here to help you achieve your goals.</p>
+
+        <!-- Success Alert -->
+        <div class="alert success">
+            <strong>Success!</strong> You're on the way to a healthier you!
+        </div>
+
+        <!-- Featured Sections -->
+        <div class="row mt-4">
+            <!-- Memberships -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Memberships</h5>
+                        <p class="card-text">Choose from a variety of membership plans that suit your fitness needs and budget.</p>
+                        <a href="{% url 'memberships' %}" class="btn btn-primary">Explore Memberships</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trainers -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Trainers</h5>
+                        <p class="card-text">Our expert trainers are here to guide you through personalized fitness routines.</p>
+                        <a href="{% url 'trainers' %}" class="btn btn-primary">Meet the Trainers</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Workout Plans -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Workout Plans</h5>
+                        <p class="card-text">Discover workout plans tailored to your fitness level and goals.</p>
+                        <a href="{% url 'workout_plans' %}" class="btn btn-primary">Find Your Plan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+    
+    <!-- ##### Footer Area Start ##### -->
+    <footer id="footer" class="footer_area clearfix">
+        <div class="container">
+            <div class="row">
+                <!-- Footer Info -->
+                <div class="col-12 col-md-6">
+                    <div class="single_widget_area d-flex mb-30">
+                        <div class="footer-logo mr-50">
+                            <a href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}" alt="GymPro Footer Logo"></a>
+                        </div>
+                        <div class="footer_menu" style="font-size: 30px;">
+                            <ul>
+                                <li><a href="{% url 'home' %}">Home</a></li>
+                                <li><a href="{% url 'memberships' %}">Memberships</a></li>
+                                <li><a href="{% url 'trainers' %}">Trainers</a></li>
+                                <li><a href="{% url 'workout_plans' %}">Workout Plans</a></li>
+                                <!-- <li><a href="#footer">Contact</a></li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Contact Info -->
+                <div class="col-12 col-md-6">
+                    <div class="single_widget_area mb-30">
+                        <h4>Contact Us</h4>
+                        <p><strong>Email:</strong> <a href="https://www.google.com">atharvaravale@gmail.com</a></p>
+                        <p><strong>Phone:</strong> +91 7900019096</p>
+                        <p><strong>Address:</strong> Shyamnagar, Jogeshwari-East, Mumbai-400060</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="row mt-5">
+                <div class="col-md-12 text-center">
+                    <!-- <p>
+                        &copy; {{ current_year }} GymPro. All rights reserved | Designed by YourName
+                    </p> -->
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ##### Footer Area End ##### -->
+
+    <!-- jQuery (Necessary for All JavaScript Plugins) -->
+    <script src="{% static 'js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- Plugins js -->
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static 'js/active.js' %}"></script>
+
+    <!-- Smooth Scroll for Contact link -->
+    <script>
+        document.querySelector('a[href="#footer"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('#footer').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+
+</html>

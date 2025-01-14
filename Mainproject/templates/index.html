@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+<video autoplay loop muted playsinline class="background-video" style="height: 50%; width:100% ; border: 5px solid black;">
+    <source src="{% static 'videos/fitness-index-bg.mp4' %}" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+    <!-- ##### Welcome Area Start ##### -->
+    <section class="welcome_area bg-img background-overlay"></section> <!-- /*style="background-image: url({% static 'img/bg-img/gym-bg.jpg' %});">*/ -->
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="hero-content text-center">
+                        <h6 style="font-size: 30px;">Welcome to FitHub</h6>
+                        <h2 style="font-size: 40px;">Your Fitness Journey Starts Here</h2>
+                        <a href="{% url 'memberships' %}" class="btn essence-btn" style="font-size: 30px;">Join Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Welcome Area End ##### -->
+
+    <!-- ##### Gym Services Area Start ##### -->
+    <div class="gym_services_area section-padding-80 clearfix">
+        <div class="container">
+            <div class="row justify-content-center">
+                <!-- Single Service -->
+                <div class="col-12 col-sm-6 col-md-4">
+                    <div class="single_service_area d-flex align-items-center justify-content-center bg-img" style=" background-size: cover; background-image: url({% static 'img/pt-bg.jpg' %}); ">
+                        <div class="service-content">
+                            <h4 style="font-size: 30px;">Personal Training</h4>
+                            <p style="font-size: 30px;">Get personalized fitness coaching with our expert trainers to help you achieve your fitness goals faster.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Service -->
+                <div class="col-12 col-sm-6 col-md-4">
+                    <div class="single_service_area d-flex align-items-center justify-content-center bg-img" style="background-size:cover;   background-image: url({% static 'img/yoga-index-bg.jpg' %});">
+                        <div class="service-content">
+                            <h4 style="font-size: 30px;">Yoga Classes</h4>
+                            <p style="font-size: 30px;">Join our relaxing yoga sessions designed to improve your flexibility, strength, and mental clarity.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Service -->
+                <div class="col-12 col-sm-6 col-md-4">
+                    <div class="single_service_area d-flex align-items-center justify-content-center bg-img" style="background-size:cover; background-image: url({% static 'img/group-index-bg.jpg' %});">
+                        <div class="service-content">
+                            <h4 style="font-size: 30px;">Group Workouts</h4>
+                            <p style="font-size: 30px;">Participate in our high-energy group workouts for a fun and motivating exercise experience.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Gym Services Area End ##### -->
+
+{% endblock %}

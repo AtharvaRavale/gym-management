@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ trainer.first_name }} {{ trainer.last_name }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ trainer.first_name }} {{ trainer.last_name }}</h1>
+    <div class="trainer-detail">
+        <img src="{{ trainer.profile_picture.url }}" alt="{{ trainer.first_name }} {{ trainer.last_name }}" class="img-fluid">
+        <p><strong>Expertise:</strong> {{ trainer.expertise }}</p>
+        <!-- <p><strong>Price per session:</strong> ${{ trainer.price_per_session }}</p> -->
+        <p>{{ trainer.bio }}</p>
+
+        <!-- Optional button to contact the trainer -->
+        
+    </div>
+</div>
+{% endblock %}

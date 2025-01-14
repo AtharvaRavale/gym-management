@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block title %} Workout Plans {% endblock %}
+
+{% block body_class %}workout-plans-page{% endblock %}
+
+{% block content %}
+
+
+
+<div class="container">
+    <h1 class="workout-title">Our Workout Plans</h1>
+    <p class="workout-description">Choose from our variety of workout plans to help you achieve your fitness goals. Whether you're aiming for strength, endurance, or flexibility, we have the perfect plan for you.</p>
+</div>
+
+<div class="row">
+    {% for p in plan %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ p.title }}</h5>
+                    <p class="card-text">{{ p.description|truncatewords:30 }}</p>
+                    <a href="{% url 'home'  %}" class="btn btn-primary">Home</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+
+
+
+
+
+    
+        <!-- Displaying different workout plans 
+        <div class="row mt-5">
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title workout-plan-title">Beginner Strength Training</h5>
+                        <p class="card-text workout-plan-text">A beginner-friendly plan designed to build foundational strength. Perfect for those new to weight training.</p>
+                        <a href="#" class="btn btn-primary workout-plan-btn">View Plan</a>
+                    </div>
+                </div>
+            </div>   -->
+
+            <!-- Plan 2 
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title workout-plan-title">Cardio Blast</h5>
+                        <p class="card-text workout-plan-text">Increase your endurance with our high-intensity cardio program. Great for burning fat and improving cardiovascular health.</p>
+                        <a href="#" class="btn btn-primary workout-plan-btn">View Plan</a>
+                    </div>
+                </div>
+            </div>   -->
+
+            <!-- Plan 3 
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title workout-plan-title">Yoga and Flexibility</h5>
+                        <p class="card-text workout-plan-text">A calming and restorative program focused on flexibility, mobility, and overall wellness.</p>
+                        <a href="#" class="btn btn-primary workout-plan-btn">View Plan</a>
+                    </div>
+                </div>
+            </div>
+        </div>   -->
+
+        <!-- Additional Workout Plans (optional) 
+        <div class="row mt-4">
+             Plan 4 
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title workout-plan-title">HIIT for Fat Loss</h5>
+                        <p class="card-text workout-plan-text">Short, intense bursts of exercise designed to boost metabolism and help you burn fat fast.</p>
+                        <a href="#" class="btn btn-primary workout-plan-btn">View Plan</a>
+                    </div>
+                </div>
+            </div>    -->
+
+            <!-- Plan 5 
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title workout-plan-title">Muscle Building</h5>
+                        <p class="card-text workout-plan-text">Focused on hypertrophy and building lean muscle mass with targeted resistance exercises.</p>
+                        <a href="#" class="btn btn-primary workout-plan-btn">View Plan</a>
+                    </div>
+                </div>
+            </div>    -->
+
+            <!-- Plan 6 
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title workout-plan-title">Full-Body Circuit</h5>
+                        <p class="card-text workout-plan-text">A total-body workout to increase strength and endurance in a circuit format, designed for all fitness levels.</p>
+                        <a href="#" class="btn btn-primary workout-plan-btn">View Plan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>    -->
+{% endblock %}
+

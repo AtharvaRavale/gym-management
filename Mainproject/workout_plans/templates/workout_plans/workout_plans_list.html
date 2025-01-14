@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Workout Plans{% endblock %}
+{% block body_class %}workout-plans-page{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Our Workout Plans</h1>
+    <div class="row">
+        {% for plan in plans %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ plan.title }}</h5>
+                        <p class="card-text">{{ plan.description|truncatewords:30 }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

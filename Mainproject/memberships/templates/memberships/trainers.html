@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Trainers{% endblock %}
+
+{% block body_class %}trainers-page{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <h1>Our Trainers</h1>
+    <div class="row">
+        {% for trainer in trainers_list %}
+        <div class="col-md-4">
+            <div class="trainer-card">
+                <img src="{{ trainer.profile_picture.url }}" alt="{{ trainer.first_name }} {{ trainer.last_name }}" class="img-fluid">
+                <h3>{{ trainer.first_name }} {{ trainer.last_name }}</h3>
+                <p>{{ trainer.expertise }}</p>
+                <!-- <p>Price per session: ${{ trainer.price_per_session }}</p> -->
+                <a href="{% url 'trainer_detail' trainer.id %}" class="btn btn-primary">View Profile</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
